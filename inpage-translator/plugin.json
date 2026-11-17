@@ -1,0 +1,69 @@
+{
+  "manifestVersion": 1,
+  "id": "community.inpage-translator",
+  "name": {
+    "default": "In-Page Translator",
+    "zh-CN": "整页翻译"
+  },
+  "version": "2.0.0",
+  "publisher": "community",
+  "repository": "https://github.com/7gzgn/dsh-inpage-translator",
+  "description": {
+    "default": "Translate the built-in browser's current page into Chinese. The plugin hands the task to the current AI session, which drives the browser itself.",
+    "zh-CN": "把内置浏览器当前页面翻译成中文。插件把任务派给当前工作区的 AI 会话，由 AI 用自己的浏览器工具取节点、翻译、回填。"
+  },
+  "license": "MIT",
+  "icon": "icons/icon.png",
+  "engines": {
+    "pluginApi": "^1.0.0"
+  },
+  "runtime": {
+    "type": "javascript",
+    "entry": "dist/main.js",
+    "resident": true
+  },
+  "contributes": {
+    "modelAccess": {
+      "purpose": "把网页文本分段送去翻译，译文回填到页面节点。"
+    },
+    "hooks": [
+      {
+        "id": "boot",
+        "event": "app.started",
+        "handler": "hooks.boot"
+      },
+      {
+        "id": "installed",
+        "event": "plugin.installed",
+        "handler": "hooks.installed"
+      },
+      {
+        "id": "enabled",
+        "event": "plugin.enabled",
+        "handler": "hooks.enabled"
+      }
+    ],
+    "tools": [
+      {
+        "id": "translate_page",
+        "title": {
+          "default": "Translate Page",
+          "zh-CN": "整页翻译"
+        },
+        "description": {
+          "default": "Translate the current page of the built-in browser in place. action: install (put the button and wait for a click), translate (translate immediately), restore (back to the original text), status (read-only state), ping (lightweight page check).",
+          "zh-CN": "把内置浏览器当前页面就地翻译。action：install（装上按钮并等用户点击）、translate（立刻翻译）、restore（还原原文）、status（只读状态）、ping（轻量探测）。"
+        },
+        "inputSchema": "schemas/translate-page.input.json",
+        "handler": "tools.translatePage"
+      }
+    ],
+    "skills": [
+      {
+        "id": "inpage-translator",
+        "file": "skills/inpage-translator/SKILL.md"
+      }
+    ],
+    "configPage": "pages/config.html"
+  }
+}

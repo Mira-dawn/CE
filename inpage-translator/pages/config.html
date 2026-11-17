@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="/__aicode/theme.css">
+<script src="/__aicode/aicode.js"></script>
+<style>
+  .page { box-sizing: border-box; width: 100%; max-width: 720px; margin: 0 auto; padding: 16px; }
+  h2 { font-size: 16px; margin: 0 0 4px; }
+  .desc { color: var(--fg-color-muted, #59636e); font-size: 12.5px; margin: 0 0 16px; line-height: 1.6; }
+  .row { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+  .row > label { flex: 0 0 auto; min-width: 84px; color: var(--fg-color-default, #1f2328); }
+  select {
+    flex: 1; min-width: 0; font: inherit; padding: 7px 9px; border-radius: 6px;
+    border: 1px solid var(--border-color-default, #d0d7de);
+    background: var(--bgColor-default, #fff);
+    color: var(--fg-color-default, #1f2328);
+  }
+  button {
+    font: inherit; padding: 8px 14px; border-radius: 6px; cursor: pointer;
+    border: 1px solid var(--border-color-default, #d0d7de);
+    background: var(--bgColor-muted, #f6f8fa);
+    color: var(--fg-color-default, #24292f);
+  }
+  button.primary { background: var(--bgColor-success, #1f883d); border-color: transparent; color: #fff; }
+  button:disabled { opacity: .6; cursor: default; }
+  .actions { display: flex; gap: 8px; margin-top: 14px; }
+  .status {
+    margin-top: 14px; padding: 10px 12px; border-radius: 6px;
+    font-size: 12.5px; line-height: 1.6;
+    background: var(--bgColor-muted, #f6f8fa);
+    border: 1px solid var(--border-color-default, #d0d7de);
+    white-space: pre-wrap; word-break: break-word;
+  }
+  .status.ok { border-color: var(--borderColor-success-emphasis, #4ac26b); }
+  .status.err { border-color: var(--borderColor-danger-emphasis, #ff8182); }
+  .hint { margin-top: 16px; color: var(--fg-color-muted, #59636e); font-size: 12px; line-height: 1.65; }
+</style>
+</head>
+<body>
+<main class="page">
+  <h2>整页翻译</h2>
+  <p class="desc">把内置浏览器当前页面翻译成中文。翻译由当前工作区的 AI 会话完成：插件把任务派给 AI，AI 用自己的浏览器工具取节点、翻译、回填。</p>
+
+  <div class="row">
+    <label for="target">目标语言</label>
+    <select id="target"></select>
+  </div>
+
+  <div class="row">
+    <label for="mode">翻译方式</label>
+    <select id="mode">
+      <option value="replace">就地替换</option>
+      <option value="bilingual">双语对照</option>
+    </select>
+  </div>
+
+  <div class="actions">
+    <button id="save" class="primary">保存</button>
+    <button id="test">翻译当前页</button>
+  </div>
+
+  <div id="status" class="status">正在读取配置…</div>
+
+  <div class="hint">
+    翻译由 AI 会话完成，计入该会话所用模型的用量。插件不持有任何 API Key，也不建模型句柄。<br>
+    使用方式：对 AI 说「把当前页面翻译成中文」，或点上面的「翻译当前页」。
+  </div>
+</main>
+
+<script>
+const LANGS = {
+  zh: '简体中文', 'zh-TW': '繁體中文', en: 'English', ja: '日本語',
+  ko: '한국어', ru: 'Русский', fr: 'Français', de: 'Deutsch', es: 'Español'
+};
+
+const targetSel = document.getElementById('target');
+const modeSel = document.getElementById('mode');
+const statusEl = document.getElementById('status');
+
+Object.entries(LANGS).forEach(([code, name]) => {
+  const o = document.createElement('option');
+  o.value = code;
+  o.textContent = name;
+  targetSel.appendChild(o);
+});
+
+function setStatus(text, kind) {
+  statusEl.textContent = text;
+  statusEl.className = 'status' + (kind ? ' ' + kind : '');
+}
+
+async function load() {
+  let cfg = {};
+  try {
+    const res = await aicode.fs.read('data://config.json');
+    cfg = JSON.parse(res.content) || {};
+  } catch (e) { cfg = {}; }
+  targetSel.value = cfg.target || 'zh';
+  modeSel.value = cfg.mode || 'replace';
+  setStatus('配置已读取。');
+}
+
+document.getElementById('save').addEventListener('click', async () => {
+  const payload = { target: targetSel.value, mode: modeSel.value };
+  try {
+    await aicode.fs.write('data://config.json', JSON.stringify(payload, null, 2));
+    setStatus('已保存。', 'ok');
+    aicode.toast('配置已保存');
+  } catch (e) {
+    setStatus('保存失败：' + String(e && e.message || e), 'err');
+  }
+});
+
+document.getElementById('test').addEventListener('click', async () => {
+  setStatus('已把任务派给 AI 会话，请切回聊天看进度…');
+  try {
+    const res = await aicode.invoke('tools.translatePage', {
+      action: 'translate',
+      target: targetSel.value,
+      mode: modeSel.value
+    });
+    setStatus((res && res.message) || JSON.stringify(res), 'ok');
+  } catch (e) {
+    setStatus('失败：' + String(e && e.message || e), 'err');
+  }
+});
+
+load();
+</script>
+</body>
+</html>

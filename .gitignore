@@ -1,0 +1,7 @@
+# AiCode 运行时目录
+.aicode/
+!/.aicode/attachments
+
+# 临时产物
+*.zip
+qq-translate-extension/

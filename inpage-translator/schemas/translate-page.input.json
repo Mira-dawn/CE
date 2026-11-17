@@ -1,0 +1,23 @@
+{
+  "type": "object",
+  "properties": {
+    "action": {
+      "type": "string",
+      "enum": ["translate", "restore", "status", "diagnose"],
+      "description": "translate=把当前页翻译任务派给 AI 会话；restore=还原原文；status=只读状态；diagnose=自检。",
+      "default": "translate"
+    },
+    "target": {
+      "type": "string",
+      "enum": ["zh", "zh-TW", "en", "ja", "ko", "ru", "fr", "de", "es"],
+      "description": "目标语言。",
+      "default": "zh"
+    },
+    "mode": {
+      "type": "string",
+      "enum": ["replace", "bilingual"],
+      "description": "replace=就地替换；bilingual=原文下方追加译文。",
+      "default": "replace"
+    }
+  }
+}
