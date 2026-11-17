@@ -59,7 +59,7 @@ function mv2(e){if(!h)return;var dx=e.clientX-h.x,dy=e.clientY-h.y;if(!dr){if(Ma
 function up(){window.removeEventListener('mousemove',mv2,true);window.removeEventListener('mouseup',up,true);if(ht){clearTimeout(ht);ht=null}if(dr){dr=false;r.setAttribute(C.drag,'bound');r.style.transition='left .16s ease, top .16s ease';pl(r);setTimeout(function(){sc=false},60)}else if(mv){sc=true;setTimeout(function(){sc=false},60)}h=null}
 r.addEventListener('mousedown',dn,true);
 r.addEventListener('click',function(e){if(sc){e.preventDefault();e.stopPropagation();return}e.preventDefault();e.stopPropagation();var s=r.getAttribute(C.state),q=r.getAttribute(C.req);if(s=='busy'||q=='pending'||q=='translating')return;r.setAttribute(C.req,s=='done'?'restore':'pending');var l=r.querySelector('[data-aicode-ipt-label]');if(l)l.textContent='…';if(s=='done')r.setAttribute(C.state,'idle');else r.setAttribute(C.state,'busy')},true)}
-function bb(){var r=document.createElement('div');r.id=C.root;r.setAttribute(C.skip,'');r.setAttribute(C.state,'idle');r.style.cssText='position:fixed;right:16px;bottom:88px;z-index:2147483647;display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:999px;background:rgba(28,30,36,.92);color:#fff;font:13px/1 system-ui,sans-serif;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.18);user-select:none;pointer-events:auto;touch-action:none';r.title='整页翻译：点一下翻译，按住可拖动';
+function bb(){var r=document.createElement('div');r.id=C.root;r.setAttribute(C.skip,'');r.setAttribute(C.state,'idle');r.style.cssText='position:fixed;top:76px;right:12px;z-index:2147483647;display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:999px;background:rgba(28,30,36,.92);color:#fff;font:13px/1 system-ui,sans-serif;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.18);user-select:none;pointer-events:auto;touch-action:none';r.title='整页翻译：点一下翻译，按住可拖动';
 var g=document.createElement('span');g.setAttribute('data-aicode-ipt-glyph','');g.textContent='\\uD83C\\uDDEF';g.style.cssText='font-size:14px;line-height:1';
 var l=document.createElement('span');l.setAttribute('data-aicode-ipt-label','');l.textContent='译';
 var n=document.createElement('span');n.setAttribute('data-aicode-ipt-note','');n.style.cssText='display:none;color:#ffb4b4;font-size:11px;max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap';
@@ -74,7 +74,8 @@ else if(a=='collect'){var s=document.querySelectorAll('['+C.node+']'),i;for(i=0;
 else if(a=='collectMore'){var o=(R&&R.offset)||0,l=(R&&R.limit)||40,nb=clb(o,l);return JSON.stringify({ok:true,action:a,nodes:nb,total:cm(),already:ct(),frames:fs()})}
 else if(a=='translate'){rt.setAttribute(C.lang,(R&&R.target)||'zh');rt.setAttribute(C.mode,(R&&R.mode)||'replace');rt.setAttribute(C.req,'');var n2=ap(R&&R.translations);ss(rt,'done','原');return JSON.stringify({ok:true,action:a,applied:n2,state:rt.getAttribute(C.state),total:cm(),already:ct(),nodes:[]})}
 else if(a=='restore'){rt.setAttribute(C.req,'');var n3=rs();ss(rt,'idle',(R&&R.label)||'译');return JSON.stringify({ok:true,action:a,restored:n3,state:'idle',total:cm(),already:0,nodes:[]})}
-else if(a=='error'){ss(rt,'error',(R&&R.message)||'failed')}
+else if(a=='accept'){rt.setAttribute(C.req,'');ss(rt,'busy','…')}
+else if(a=='error'){rt.setAttribute(C.req,'');ss(rt,'error',(R&&R.message)||'failed')}
 var fr=cl();
 return JSON.stringify({ok:true,action:a,state:rt.getAttribute(C.state),request:rt.getAttribute(C.req)||'',added:fr.length,nodes:fr,frames:fs(),total:cm(),already:ct()});}catch(e){return JSON.stringify({ok:false,error:String((e&&e.message)||e)})}
 })()`;

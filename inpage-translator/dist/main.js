@@ -148,10 +148,15 @@ function remember(target, text, value) {
 }
 
 // ------------------------------------------------------------------
-// 巡场：定期探测页面状态（只读，不干预）
+// 巡场：定期探测页面状态，发现按钮请求就自动派翻译任务
+//
+// 页面里的按钮与插件之间没有直接通道（网页里拿不到插件桥），
+// 所以采用「页面写请求标记 → 插件轮询发现」的约定：
+//   按钮点击 → 页面写 data-aicode-ipt-req="pending"|"restore"
+//   插件巡场 → 读到标记 → 派任务给 AI 会话 → AI 回填
 // ------------------------------------------------------------------
 
-const PATROL_INTERVAL = 5000;
+const PATROL_INTERVAL = 2500;
 let patrolTimer = null;
 let patrolling = false;
 
@@ -159,13 +164,74 @@ async function patrolOnce() {
   if (patrolling) return;
   patrolling = true;
   try {
-    const report = await runOnPage('ping');
-    // 只探测，不做任何动作。翻译由 AI 会话驱动。
+    let report = await runOnPage('ping');
+
+    // ping 失败 = 浏览器不可用（页面没开、插件拿不到标签页），换 install 也没用。
+    if (!report || !report.ok) return;
+
+    // 页面刷新后按钮与打标都会丢，ping 本身会顺带装上按钮（幂等）。
+    const request = String(report.request || '');
+    if (!request) return;
+
+    if (request === 'restore') {
+      const cfg = await loadConfig();
+      const res = await runOnPage('restore');
+      if (res && res.ok) return;
+      await relayToAiSession({
+        target: cfg.target, mode: cfg.mode, nodes: [], task: 'restore',
+      }, hostCall);
+      return;
+    }
+
+    if (request === 'pending' || request === 'translating') {
+      await handleButtonRequest();
+    }
   } catch (e) {
-    // 静默
+    // 页面可能没开或已刷新：静默，下一轮再来
   } finally {
     patrolling = false;
   }
+}
+
+/**
+ * 处理按钮点击：收集节点 → 派任务给 AI 会话。
+ */
+async function handleButtonRequest() {
+  const cfg = await loadConfig();
+
+  let nodes = [];
+  let pageUrl = '';
+  let readError = null;
+
+  try {
+    const ping = await runOnPage('ping');
+    if (ping && ping.url) pageUrl = ping.url;
+  } catch (e) { /* 忽略 */ }
+
+  try {
+    const collected = await runOnPage('collect');
+    if (collected && collected.ok) nodes = collected.nodes || [];
+    else readError = (collected && collected.error) || null;
+  } catch (e) {
+    readError = String((e && e.message) || e);
+  }
+
+  const relay = await relayToAiSession({
+    target: cfg.target,
+    mode: cfg.mode,
+    nodes,
+    pageUrl,
+    readError,
+  }, hostCall);
+
+  if (!relay.ok) {
+    // 派不出去就把错误显示在按钮上
+    await runOnPage('error', { message: relay.error });
+    return;
+  }
+
+  // 告知页面「已受理」，并把请求标记清掉，避免重复派发
+  await runOnPage('accept', {});
 }
 
 function startPatrol() {
