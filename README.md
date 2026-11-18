@@ -23,6 +23,27 @@
 
 ---
 
+## 下载
+
+> **当前版本 v2.7.0-DLL**（构建 2026-11-14）· 单文件约 598 KB · 需配合 Cheat Engine 使用
+
+[![下载 Lua 脚本](https://img.shields.io/badge/%E4%B8%8B%E8%BD%BD-Lua%20%E8%84%9A%E6%9C%AC-38BDF8?style=for-the-badge&logo=github)](https://github.com/alj7800609/ce-/blob/main/.aicode/attachments/AOB%E7%AC%A6%E5%8F%B7%E8%84%9A%E6%9C%AC%E7%94%9F%E6%88%90%E5%99%A8-%E6%96%B0%E5%A2%9E%E6%97%A0%E7%97%95%E6%A8%A1%E5%BC%8F.lua)
+
+如果按钮没显示，可直接用下面的链接：
+
+- **直接下载（Raw）**：[AOB符号脚本生成器-新增无痕模式.lua](https://raw.githubusercontent.com/alj7800609/ce-/main/.aicode/attachments/AOB%E7%AC%A6%E5%8F%B7%E8%84%9A%E6%9C%AC%E7%94%9F%E6%88%90%E5%99%A8-%E6%96%B0%E5%A2%9E%E6%97%A0%E7%97%95%E6%A8%A1%E5%BC%8F.lua)
+- **文件页面（在线查看 / 手动下载）**：[在 GitHub 打开文件](https://github.com/alj7800609/ce-/blob/main/.aicode/attachments/AOB%E7%AC%A6%E5%8F%B7%E8%84%9A%E6%9C%AC%E7%94%9F%E6%88%90%E5%99%A8-%E6%96%B0%E5%A2%9E%E6%97%A0%E7%97%95%E6%A8%A1%E5%BC%8F.lua)（打开后点右上角 `Raw` → 右键「另存为」）
+
+| 项目 | 信息 |
+| --- | --- |
+| 文件名 | `AOB符号脚本生成器-新增无痕模式.lua` |
+| 仓库路径 | `.aicode/attachments/AOB符号脚本生成器-新增无痕模式.lua` |
+| 文件大小 | 612,238 字节（约 598 KB） |
+| 版本 / 构建 | v2.7.0-DLL / 2026-11-14 |
+| 格式 | 单文件 Lua（内含 C# / C++ 导出模块），UTF-8 |
+
+---
+
 ## 一、工具简介
 
 一句话概括：**一条指令进，一份常规 AOB 脚本出。**
