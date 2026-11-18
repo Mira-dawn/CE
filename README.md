@@ -5,6 +5,22 @@
 > 源文件：`AOB符号脚本生成器-新增无痕模式.lua`
 > 运行环境：Cheat Engine（CE）的 Lua 插件
 
+<p align="center">
+  <img src="img/logo_anim.gif" alt="工具图标" width="160">
+</p>
+
+> 工具图标（取自脚本内嵌的 12 帧动画 logo，1:1 原图为 40×40）
+
+---
+
+## 界面一览
+
+<p align="center">
+  <img src="img/ui-layout.png" alt="工具界面结构示意图" width="720">
+</p>
+
+> 界面结构示意图：标题栏 + ①指令内容 ②符号与定位 ③选项 ④附带改值 ⑤结果输出 五大分区 + 底部固定工具条（根据脚本 UI 代码还原）。
+
 ---
 
 ## 一、工具简介
