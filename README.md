@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://cdn.jsdelivr.net/gh/alj7800609/ce-@main/img/logo_anim.gif" width="112" alt="AOB 符号脚本生成器" />
+  <img src="https://cdn.jsdelivr.net/gh/Mira-dawn/CE@main/img/logo_anim.gif" width="112" alt="AOB 符号脚本生成器" />
   <h1 align="center">AOB 符号脚本生成器</h1>
   <p align="center">
     一行指令 → 一份可直接启用的 AOB 脚本 · 无痕模式 · 独立 EXE / DLL 导出
@@ -17,15 +17,15 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/alj7800609/ce-/stargazers"><img src="https://img.shields.io/github/stars/alj7800609/ce-?style=social" alt="Stars" /></a>
-  <a href="https://github.com/alj7800609/ce-/forks"><img src="https://img.shields.io/github/forks/alj7800609/ce-?style=social" alt="Forks" /></a>
+  <a href="https://github.com/Mira-dawn/CE/stargazers"><img src="https://img.shields.io/github/stars/Mira-dawn/CE?style=social" alt="Stars" /></a>
+  <a href="https://github.com/Mira-dawn/CE/forks"><img src="https://img.shields.io/github/forks/Mira-dawn/CE?style=social" alt="Forks" /></a>
 </p>
 
 ---
 
 ## 界面一览
 
-![主界面 - 五大分区与底部工具条](https://cdn.jsdelivr.net/gh/alj7800609/ce-@main/img/ui-layout.png)
+![主界面 - 五大分区与底部工具条](https://cdn.jsdelivr.net/gh/Mira-dawn/CE@main/img/ui-layout.png)
 
 <p align="center">
   主界面 · ①指令内容 ②符号与定位 ③选项 ④附带改值 ⑤结果输出 + 底部工具条
@@ -96,10 +96,10 @@
 
 > **v2.7.0-DLL** · 单文件约 598 KB · 需配合 Cheat Engine 使用
 
-[![下载 Lua 脚本](https://img.shields.io/badge/%E4%B8%8B%E8%BD%BD-Lua%20%E8%84%9A%E6%9C%AC-38BDF8?style=for-the-badge&logo=github)](https://github.com/alj7800609/ce-/blob/main/.aicode/attachments/AOB%E7%AC%A6%E5%8F%B7%E8%84%9A%E6%9C%AC%E7%94%9F%E6%88%90%E5%99%A8-%E6%96%B0%E5%A2%9E%E6%97%A0%E7%97%95%E6%A8%A1%E5%BC%8F.lua)
+[![下载 Lua 脚本](https://img.shields.io/badge/%E4%B8%8B%E8%BD%BD-Lua%20%E8%84%9A%E6%9C%AC-38BDF8?style=for-the-badge&logo=github)](https://github.com/Mira-dawn/CE/blob/main/.aicode/attachments/AOB%E7%AC%A6%E5%8F%B7%E8%84%9A%E6%9C%AC%E7%94%9F%E6%88%90%E5%99%A8-%E6%96%B0%E5%A2%9E%E6%97%A0%E7%97%95%E6%A8%A1%E5%BC%8F.lua)
 
-- **直接下载（Raw）**：[AOB符号脚本生成器-新增无痕模式.lua](https://raw.githubusercontent.com/alj7800609/ce-/main/.aicode/attachments/AOB%E7%AC%A6%E5%8F%B7%E8%84%9A%E6%9C%AC%E7%94%9F%E6%88%90%E5%99%A8-%E6%96%B0%E5%A2%9E%E6%97%A0%E7%97%95%E6%A8%A1%E5%BC%8F.lua)
-- **文件页面**：[在 GitHub 打开文件](https://github.com/alj7800609/ce-/blob/main/.aicode/attachments/AOB%E7%AC%A6%E5%8F%B7%E8%84%9A%E6%9C%AC%E7%94%9F%E6%88%90%E5%99%A8-%E6%96%B0%E5%A2%9E%E6%97%A0%E7%97%95%E6%A8%A1%E5%BC%8F.lua)（打开后点 `Raw` → 右键「另存为」）
+- **直接下载（Raw）**：[AOB符号脚本生成器-新增无痕模式.lua](https://raw.githubusercontent.com/Mira-dawn/CE/main/.aicode/attachments/AOB%E7%AC%A6%E5%8F%B7%E8%84%9A%E6%9C%AC%E7%94%9F%E6%88%90%E5%99%A8-%E6%96%B0%E5%A2%9E%E6%97%A0%E7%97%95%E6%A8%A1%E5%BC%8F.lua)
+- **文件页面**：[在 GitHub 打开文件](https://github.com/Mira-dawn/CE/blob/main/.aicode/attachments/AOB%E7%AC%A6%E5%8F%B7%E8%84%9A%E6%9C%AC%E7%94%9F%E6%88%90%E5%99%A8-%E6%96%B0%E5%A2%9E%E6%97%A0%E7%97%95%E6%A8%A1%E5%BC%8F.lua)（打开后点 `Raw` → 右键「另存为」）
 
 ---
 
@@ -192,11 +192,11 @@
 
 ## Star History
 
-<a href="https://www.star-history.com/?repos=alj7800609%2Fce-&type=date&legend=top-left">
+<a href="https://www.star-history.com/?repos=Mira-dawn%2FCE&type=date&legend=top-left">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=alj7800609/ce-&type=date&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=alj7800609/ce-&type=date&legend=top-left" />
-   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=alj7800609/ce-&type=date&legend=top-left" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=Mira-dawn/CE&type=date&theme=dark&legend=top-left" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=Mira-dawn/CE&type=date&legend=top-left" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=Mira-dawn/CE&type=date&legend=top-left" />
  </picture>
 </a>
 
@@ -204,9 +204,9 @@
 
 ## 反馈与贡献
 
-- **Bug 反馈**：到 [Issues](https://github.com/alj7800609/ce-/issues) 提交，附上 CE 版本、复现步骤与日志。
-- **功能建议**：欢迎在 [Issues](https://github.com/alj7800609/ce-/issues) 讨论。
-- **贡献代码**：欢迎提交 [Pull Request](https://github.com/alj7800609/ce-/pulls)。
+- **Bug 反馈**：到 [Issues](https://github.com/Mira-dawn/CE/issues) 提交，附上 CE 版本、复现步骤与日志。
+- **功能建议**：欢迎在 [Issues](https://github.com/Mira-dawn/CE/issues) 讨论。
+- **贡献代码**：欢迎提交 [Pull Request](https://github.com/Mira-dawn/CE/pulls)。
 
 如果这个项目对你有帮助，欢迎点个 **Star** ⭐ 支持。
 
