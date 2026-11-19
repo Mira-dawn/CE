@@ -26,14 +26,11 @@
 ## 界面一览
 
 <p align="center">
-  <table>
-    <tr>
-      <td align="center"><img src="img/ui-layout.png" alt="主界面 - 五大分区与底部工具条" width="560" /></td>
-    </tr>
-    <tr>
-      <td align="center">主界面 · ①指令内容 ②符号与定位 ③选项 ④附带改值 ⑤结果输出 + 底部工具条</td>
-    </tr>
-  </table>
+  <img src="img/ui-layout.png" alt="主界面 - 五大分区与底部工具条" width="560" />
+</p>
+
+<p align="center">
+  主界面 · ①指令内容 ②符号与定位 ③选项 ④附带改值 ⑤结果输出 + 底部工具条
 </p>
 
 > 界面结构示意图，根据脚本 UI 代码 1:1 还原（深色调、五大分区、真实按钮文案）。
