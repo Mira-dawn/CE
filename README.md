@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="img/logo_anim.gif" width="112" alt="AOB 符号脚本生成器" />
+  <img src="https://cdn.jsdelivr.net/gh/alj7800609/ce-@main/img/logo_anim.gif" width="112" alt="AOB 符号脚本生成器" />
   <h1 align="center">AOB 符号脚本生成器</h1>
   <p align="center">
     一行指令 → 一份可直接启用的 AOB 脚本 · 无痕模式 · 独立 EXE / DLL 导出
@@ -25,9 +25,7 @@
 
 ## 界面一览
 
-<p align="center">
-  <img src="img/ui-layout.png" alt="主界面 - 五大分区与底部工具条" width="560" />
-</p>
+![主界面 - 五大分区与底部工具条](https://cdn.jsdelivr.net/gh/alj7800609/ce-@main/img/ui-layout.png)
 
 <p align="center">
   主界面 · ①指令内容 ②符号与定位 ③选项 ④附带改值 ⑤结果输出 + 底部工具条
